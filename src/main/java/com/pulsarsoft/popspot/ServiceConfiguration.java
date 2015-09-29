@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceConfiguration {
 
     @Bean
-    LocationVoteService getLocationVoteService(){
+    LocationVoteService createLocationVoteService(){
         return new LocationVoteService();
     }
 }
