@@ -1,14 +1,9 @@
 package com.pulsarsoft.popspot.Controller;
 
-import com.pulsarsoft.popspot.Model.Coordinates;
-import com.pulsarsoft.popspot.Model.Feedback;
 import com.pulsarsoft.popspot.Model.LocationVote;
 import com.pulsarsoft.popspot.Repository.LocationVoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -29,10 +24,8 @@ public class LocationVoteController {
 
 
     @RequestMapping(value = "/put-rating", method = RequestMethod.POST)
-    public void putFeedback(@RequestBody String text)
+    public void putFeedback(@RequestBody LocationVote locationVote)
     {
-        Feedback feedback = new Feedback((short) 1, "hello");
-        Coordinates coordinates = new Coordinates(123, 321);
-        locationVoteRepository.insert(new LocationVote(coordinates, feedback));
+        locationVoteRepository.insert(locationVote);
     }
 }

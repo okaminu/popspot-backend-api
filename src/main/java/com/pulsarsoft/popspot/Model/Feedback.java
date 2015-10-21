@@ -5,11 +5,22 @@ package com.pulsarsoft.popspot.Model;
  */
 public class Feedback {
 
-    public final short rating;
-    public final String comment;
+    private short rating;
+    private String comment;
 
-    public Feedback(short rating, String comment) {
+    public short getRating() {
+        return rating;
+    }
+
+    public void setRating(short rating) {
         this.rating = rating;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
         this.comment = comment;
     }
 }
