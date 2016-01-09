@@ -22,6 +22,7 @@ public class LocationVoteController {
     public Collection<LocationVote> getFeedback() {
         return locationVoteRepository.findAll();
     }
+    
 
 
     @RequestMapping(value = "/put-rating", method = RequestMethod.POST)
