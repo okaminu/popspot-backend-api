@@ -1,8 +1,10 @@
 package com.pulsarsoft.popspot.Controller;
 
 import com.pulsarsoft.popspot.Model.LocationVote;
+import com.pulsarsoft.popspot.Model.Status;
 import com.pulsarsoft.popspot.Repository.LocationVoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -13,7 +15,6 @@ import java.util.Collection;
 
 @RestController()
 public class LocationVoteController {
-
     @Autowired
     LocationVoteRepository locationVoteRepository;
 
@@ -24,8 +25,19 @@ public class LocationVoteController {
 
 
     @RequestMapping(value = "/put-rating", method = RequestMethod.POST)
-    public void putFeedback(@RequestBody LocationVote locationVote)
+    public Status putFeedback(@RequestBody LocationVote locationVote)
     {
-        locationVoteRepository.insert(locationVote);
+        Status status = new Status();
+        try
+        {
+            locationVoteRepository.insert(locationVote);
+            status.setHasProcessed(true);
+            return status;
+        }
+        catch (DataAccessException ex)
+        {
+            status.setHasProcessed(false);
+            return status;
+        }
     }
 }
