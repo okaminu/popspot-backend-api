@@ -33,6 +33,7 @@ public class LocationVoteController {
         {
             locationVoteRepository.insert(locationVote);
             status.setHasProcessed(true);
+        //todo aurdeg it is suggested to give new Status on return instead on creating beforehand
             return status;
         }
         catch (DataAccessException ex)
