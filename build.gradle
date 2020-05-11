@@ -1,0 +1,30 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+}
+
+apply plugin: 'application'
+
+repositories {
+    jcenter()
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+mainClassName = 'com.pulsarsoft.popspot.Application'
+
+defaultTasks 'run'
+
+group = 'com.pulsarsoft'
+version = '1.0.0'
+
+shadowJar {
+    mergeServiceFiles('META-INF/spring.*')
+}
+
+dependencies {
+
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.data:spring-data-mongodb"
+
+}
